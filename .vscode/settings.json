@@ -1,4 +1,4 @@
 {
   "github.copilot.editor.enableAutoCompletions": false,
-  "cSpell.words": ["inorder", "postorder", "PREORDER"]
+  "cSpell.words": ["inorder", "pallindrome", "postorder", "PREORDER"]
 }

@@ -22,5 +22,23 @@ def frog_jump(n, heights, energy):
         )
 
 
+def frog_jump_with_k(n, k, heights, energy):
+    if n <= 1:
+        return energy
+    else:
+        cal_energy = abs(heights[n] - heights[n - 1])
+        energies = []
+        for i in range(n - k):
+            energies.append(
+                frog_jump_with_k(
+                    n - i,
+                    k,
+                    heights,
+                    energy + cal_energy,
+                )
+            )
+        return min(energies)
+
+
 if __name__ == "__main__":
-    print(frog_jump(4 - 1, [10, 20, 30, 10], 0))
+    print(frog_jump_with_k(4 - 1, 2, [10, 20, 30, 10], 0))
