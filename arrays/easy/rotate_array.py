@@ -22,6 +22,8 @@ def rotate_to_left(nums, d_places):
 
 if __name__ == "__main__":
     nums = [1, 2, 3, 4, 5]
+    k = 11
     # rotate_to_right(nums, 2)
-    rotate_to_left(nums, 2)
+    k = 11 % len(nums)
+    rotate_to_left(nums, k)
     print(nums)
