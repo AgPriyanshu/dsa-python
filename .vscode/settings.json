@@ -14,6 +14,7 @@
   "editor.hover.enabled": false,
   "editor.wordBasedSuggestions": "off",
   "editor.snippetSuggestions": "none",
+  "editor.formatOnSave": false,
 
   // ✅ Disable Python IntelliSense & auto imports
   "python.analysis.autoImportCompletions": false,
