@@ -1,4 +1,37 @@
 {
+  // ✅ Disable GitHub Copilot completions
   "github.copilot.editor.enableAutoCompletions": false,
+
+  // ✅ Disable all IntelliSense suggestions
+  "editor.quickSuggestions": {
+    "comments": "off",
+    "strings": "off",
+    "other": "off"
+  },
+  "editor.suggestOnTriggerCharacters": false,
+  "editor.inlineSuggest.enabled": false,
+  "editor.parameterHints.enabled": false,
+  "editor.hover.enabled": false,
+  "editor.wordBasedSuggestions": "off",
+  "editor.snippetSuggestions": "none",
+
+  // ✅ Disable Python IntelliSense & auto imports
+  "python.analysis.autoImportCompletions": false,
+  "python.analysis.completeFunctionParens": false,
+  "python.analysis.typeCheckingMode": "off",
+  "python.analysis.diagnosticMode": "off",
+  "python.languageServer": "None",
+
+  // ✅ Disable IntelliCode (ML-based suggestions)
+  "editor.suggest.showWords": false,
+  "editor.suggest.showSnippets": false,
+  "editor.suggest.showClasses": false,
+  "editor.suggest.showFunctions": false,
+  "editor.suggest.showVariables": false,
+
+  // ✅ Disable parameter & method signature popups
+  "editor.parameterHints.cycle": false,
+
+  // ✅ Keep custom dictionary intact
   "cSpell.words": ["inorder", "pallindrome", "postorder", "PREORDER"]
 }
