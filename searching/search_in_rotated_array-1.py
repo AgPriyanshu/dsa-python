@@ -2,24 +2,23 @@
 
 
 def search_in_rotated_array(nums, target):
-    low = 0
-    high = len(nums) - 1
-    while low <= high:
-        mid = (low + high) // 2
+    lb = 0
+    ub = len(nums) - 1
+    while lb <= ub:
+        mid = (lb + ub) // 2
         if nums[mid] == target:
             return mid
-        elif nums[low] <= nums[mid]:  # Means left is sorted.
-            if target >= nums[low] and target < nums[mid]:
-                high = mid - 1
+        elif nums[lb] <= nums[mid]:
+            if nums[lb] <= target and target <= nums[mid]:
+                ub = mid - 1
             else:
-                low = mid + 1
-        elif nums[high] >= nums[mid]:  # Means right is sorted.
-            if target <= nums[high] and target > nums[mid]:
-                low = mid + 1
+                lb = mid + 1
+        elif nums[ub] >= nums[mid]:
+            if nums[ub] >= target and target >= nums[mid]:
+                lb = mid + 1
             else:
-                high = mid - 1
+                ub = mid -1
     return -1
-
 
 if __name__ == "__main__":
     print(search_in_rotated_array([4, 5, 6, 7, 0, 1, 2], 0))
