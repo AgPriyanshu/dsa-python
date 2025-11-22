@@ -1,39 +1,24 @@
 # Problem Statement: Write a function to find the longest common prefix string amongst an array of strings. 
 # If there is no common prefix, return an empty string "".
-import sys
+class Solution:  
+    def longestCommonPrefix(self, st):
+        if len(st) == 1:
+            return st[0]
+        elif len(st) == 0:
+            return ""
+        st = sorted(st)
+        first_str = st[0]
+        last_str = st[-1]
+        j = -1
+        i = 0
+        while i < len(first_str) and i < len(last_str):
+            if first_str[i] == last_str[i]:
+                j = i
+            else:
+                break
+            i += 1
 
-def lcp(strs: str):
-  to_match = strs[0]
-  ans = ''
-  min_count = sys.maxsize
-
-
-  for index in range(1,len(strs),1):
-    s = strs[index]
-
-    if len(s) >= 1 and len(to_match) >= 1 and s[0] != to_match[0]:
-      return ""
-    else:
-      i = 0
-      j = 0
-      s_len = len(s)
-      count = 0
-      str_temp = ''
-      while i < s_len and j < len(to_match):
-        if s[i] == to_match[j]:
-          count += 1
-          str_temp += s[i]
+        if j != -1:
+            return first_str[0:j+1]    
         else:
-          break
-        i +=1
-        j +=1
-
-      
-      if count < min_count: 
-        min_count = count
-        ans = str_temp
-  return ans
-
-if __name__ == "__main__":
-  strs =  ["aaa","aa","aaa"]
-  print(lcp(strs))
+            return ""
