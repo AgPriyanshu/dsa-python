@@ -29,12 +29,6 @@ def buildTree(is_, ie, inorder_map, ps, pe, postorder):
     root = TreeNode(postorder[pe])
     inorder_root_index = inorder_map[postorder[pe]]
     nums_elements = inorder_root_index - is_
-    # import pdb
-
-    # pdb.set_trace()
-    # print(
-    #     f"is_:{is_},ie:{ie},inorder_root_index:{inorder_root_index},ps:{ps},pe:{pe},postorder:{postorder}"
-    # )
 
     root.left = buildTree(
         is_, inorder_root_index - 1, inorder_map, ps, ps + nums_elements - 1, postorder

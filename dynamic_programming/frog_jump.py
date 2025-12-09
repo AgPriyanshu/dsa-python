@@ -1,44 +1,32 @@
-# Given a number of stairs and a frog, the frog wants to climb from the 0th stair to the (N-1)th stair.
-# At a time the frog can climb either one or two steps. A height[N] array is also given. Whenever the frog jumps
-# from a stair i to stair j, the energy consumed in the jump is abs(height[i]- height[j]), where abs() means the
-# absolute difference. We need to return the minimum energy that can be used by the frog to jump from stair 0 to
-# stair N-1.
-def frog_jump(n, heights, energy):
-    if n <= 1:
-        return energy
-    else:
-        cal_energy = abs(heights[n] - heights[n - 1])
-        return min(
-            frog_jump(
-                n - 1,
-                heights,
-                energy + cal_energy,
-            ),
-            frog_jump(
-                n - 2,
-                heights,
-                energy + cal_energy,
-            ),
-        )
+# A frog wants to climb a staircase with n steps. Given an integer array heights, where heights[i] contains the height of the ith step, and an integer k.
 
 
-def frog_jump_with_k(n, k, heights, energy):
-    if n <= 1:
-        return energy
-    else:
-        cal_energy = abs(heights[n] - heights[n - 1])
+# To jump from the ith step to the jth step, the frog requires abs(heights[i] - heights[j]) energy, where abs() denotes the absolute difference. The frog can jump from the ith step to any step in the range [i + 1, i + k], provided it exists.
+
+
+# Return the minimum amount of energy required by the frog to go from the 0th step to the (n-1)th step.
+
+class Solution:
+    def jump(self,heights,k,n,dp):
+        if n <= 0:
+            return 0
+        if dp.get(n) is not None:
+            return dp[n]
+
         energies = []
-        for i in range(n - k):
-            energies.append(
-                frog_jump_with_k(
-                    n - i,
-                    k,
-                    heights,
-                    energy + cal_energy,
-                )
-            )
-        return min(energies)
+
+        for i in range(1,k+1):
+            dp[n-i] = self.jump(heights,k,n-i,dp)
+            energies.append(abs(heights[n] - heights[n-i]) + dp[n-i])
+        
+        dp[n] = 0 if len(energies) == 0 else min(energies) 
+        return dp[n]
+
+    def frogJump(self, heights, k):
+        dp = {}
+        dp[0] = 0
+        return self.jump(heights,k,len(heights)-1,dp)
 
 
 if __name__ == "__main__":
-    print(frog_jump_with_k(4 - 1, 2, [10, 20, 30, 10], 0))
+    print(Solution().frogJump([10,5,20,0,15],2))
