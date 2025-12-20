@@ -14,6 +14,7 @@ class Solution:
     pick_sum2 = self.check_equal_partition(n,arr,i+1,sum1,sum2+arr[i],dp)
 
     dp[f'{i}-{sum1}-{sum2}'] = pick_sum1 or pick_sum2
+    
     return pick_sum1 or pick_sum2 
     
   def equalPartition(self, n, arr):
