@@ -17,6 +17,7 @@ class Solution:
           if i != j and adj[i][j] == 1:
             # print(adj_list[i][0])
             adj_list[i].append(j)
+
       count = 0
       for i in range(V):
         if not visited[i]:

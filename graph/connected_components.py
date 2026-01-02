@@ -18,6 +18,7 @@ class Solution:
         for i in range(E):
             adjLs[edges[i][0]].append(edges[i][1])
             adjLs[edges[i][1]].append(edges[i][0])
+
         for node in range(V):
           if not visited[node]:
             self.dfs(node,adjLs,visited)
