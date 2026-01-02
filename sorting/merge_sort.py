@@ -5,7 +5,6 @@ def merge(nums, low: int, mid: int, high: int):
     temp = []
     left = low
     right = mid + 1
-
     while left <= mid and right <= high:
         if nums[left] <= nums[right]:
             temp.append(nums[left])
