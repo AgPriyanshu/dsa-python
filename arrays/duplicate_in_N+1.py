@@ -1,6 +1,5 @@
 # Problem: Find the duplicate in an array of N+1 integers.
 def find_dup(nums):
-    a
     for num in nums:
         index = abs(num)
         if nums[index] < 0:

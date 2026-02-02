@@ -34,5 +34,11 @@
   "editor.parameterHints.cycle": false,
 
   // ✅ Keep custom dictionary intact
-  "cSpell.words": ["inorder", "pallindrome", "postorder", "PREORDER"]
+  "cSpell.words": [
+    "ctoi",
+    "inorder",
+    "pallindrome",
+    "postorder",
+    "PREORDER"
+  ]
 }

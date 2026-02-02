@@ -17,5 +17,5 @@ class Solution:
 
 
 if __name__ == "__main__":
-  nums =  [-2, -3, -7, -2, -10, -4]
+  nums =  [-10,78,-78,10,12,18]
   print(Solution().maxSubArray(nums))

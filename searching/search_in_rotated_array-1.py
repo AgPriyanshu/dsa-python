@@ -6,6 +6,7 @@ def search_in_rotated_array(nums, target):
     ub = len(nums) - 1
     while lb <= ub:
         mid = (lb + ub) // 2
+        print(lb,ub,mid,nums[mid])
         if nums[mid] == target:
             return mid
         elif nums[lb] <= nums[mid]:

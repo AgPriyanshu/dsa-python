@@ -3,7 +3,7 @@ from typing import List
 
 def insertion_sort(nums: List[int]):
     n = len(nums)
-    for i in range(n):
+    for i in range(1,n):
         key = nums[i]
         j = i - 1
         while j >= 0 and key < nums[j]:
@@ -12,7 +12,7 @@ def insertion_sort(nums: List[int]):
         nums[j + 1] = key
 
         print(
-            f"After pass {i+1}, the sorted array is: {nums}"
+            f"After pass {i}, the sorted array is: {nums}"
         )  # print sorted array after each
 
 
