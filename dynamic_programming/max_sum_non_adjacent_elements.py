@@ -60,12 +60,44 @@ class Solution:
             return 0
         if i in dp:
             return dp[i]
-        # pick current
+
         pick = nums[i] + self.non_adjacent(nums, i-2, dp)
-        # don't pick current
         not_pick = self.non_adjacent(nums, i-1, dp)
+
         dp[i] = max(pick, not_pick)
         return dp[i]
+
+    def nonAdjacentTabulation(self, nums):
+        if not nums:
+            return 0
+
+        dp = [0]*len(nums)
+        dp[0] = nums[0]
+
+        for i in range(1,len(nums)):
+            pick = nums[i] + dp[i-2] if i-2 >= 0 else 0
+            not_pick = dp[i-1]
+            dp[i] = max(pick,not_pick)
+
+        return dp[len(nums)-1]
+
+    def nonAdjacentTabulationSpaceOptimized(self, nums):
+        if not nums:
+            return 0
+
+        prev1, prev2 = nums[0], 0
+       
+        for i in range(1,len(nums)):
+            pick = nums[i] + (prev2 if i-2 >= 0 else 0)
+            not_pick = prev1
+            curr = max(pick,not_pick)
+            prev2 = prev1
+            prev1 = curr
+
+
+        return prev1
+
+
 
     def nonAdjacent(self, nums):
         if not nums:
@@ -74,5 +106,5 @@ class Solution:
         return self.non_adjacent(nums, len(nums)-1, dp)
 
 if __name__ == "__main__":
-    print(Solution().nonAdjacent( [1,1000,1,1000,1,1000]))
+    print(Solution().nonAdjacentTabulation( [1,1000,1,1000,1,1000]))
 

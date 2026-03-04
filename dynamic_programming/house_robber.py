@@ -18,12 +18,25 @@ def house_robber(arr, n, dp):
     dp[n] = max(pick, notPick)
     return dp[n]
 
+def house_robber_table(arr, n):
+    if n < 0:
+        return 0
+    prev1, prev2 = arr[0],0
+    for i in range(1,n):
+        pick = arr[i] + (prev2 if i-2 >= 0 else 0)
+        not_pick = prev1
+        current = max(pick,not_pick)
+        prev2 =prev1
+        prev1=current
+
+    return prev1
+
 
 if __name__ == "__main__":
     arr = [1, 2]
     print(
         max(
-            house_robber(arr[0 : len(arr) - 1], len(arr) - 2, {}),
-            house_robber(arr[1:], len(arr) - 2, {}),
+            house_robber_table(arr[0 : len(arr) - 1], len(arr) - 2),
+            house_robber_table(arr[1:], len(arr) - 2),
         )
     )

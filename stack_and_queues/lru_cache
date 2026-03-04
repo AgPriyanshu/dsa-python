@@ -1,0 +1,122 @@
+# Design a data structure that follows the constraints of Least Recently Used (LRU) cache.
+
+
+# Implement the LRUCache class:
+
+
+# LRUCache(int capacity): We need to initialize the LRU cache with positive size capacity.
+
+# int get(int key): Returns the value of the key if the key exists, otherwise return -1.
+
+# void put(int key,int value): Update the value of the key if the key exists. Otherwise, add the key-value pair to the cache. If the number of keys exceeds the capacity from this operation, evict the least recently used key.
+
+
+# The functions get and put must each run in O(1) average time complexity.
+
+
+# Note : In Input is provided in 2D array format where the first number in each array denotes the operation (1-put, 2-get) to perform. The next integers are the values used for the operation.
+
+# Class to implement Nodes of a doubly linked list
+class Node:
+    def __init__(self, key=-1, val=-1):
+        self.key = key
+        self.val = val
+        self.next = None
+        self.prev = None
+
+# Class implementing LRU cache
+class LRUCache:
+
+    def __init__(self, capacity):
+        self.mpp = {} # Map data structure
+        self.cap = capacity # Capacity
+        self.head = Node() # Dummy head pointer
+        self.tail = Node() # Dummy tail pointer
+
+        # Make the connections
+        self.head.next = self.tail
+        self.tail.prev = self.head
+
+    # Private method to delete node from doubly linked list
+    def deleteNode(self, node):
+        # Get the previous and next pointers
+        prevNode = node.prev
+        nextNode = node.next
+
+        # Remove pointers to node
+        prevNode.next = nextNode
+        nextNode.prev = prevNode
+
+    # Private method to insert node after head
+    def insertAfterHead(self, node):
+        nextNode = self.head.next
+        self.head.next = node
+        nextNode.prev = node
+        node.prev = self.head
+        node.next = nextNode
+
+    # Method to get the key from cache
+    def get(self, key_):
+        # Return -1 if it is not present in cache
+        if key_ not in self.mpp:
+            return -1
+
+        node = self.mpp[key_] # Get the node
+        val = node.val # Get the value
+
+        # Delete the node
+        self.deleteNode(node)
+        # Insert this node to front as it was recently used
+        self.insertAfterHead(node)
+
+        # Return the stored value
+        return val
+
+    # Method to update value if key exists, otherwise insert the key-value pair
+    def put(self, key_, value):
+        # Update the value if key is already present
+        if key_ in self.mpp:
+            node = self.mpp[key_] # Get the node
+            node.val = value # Update the value
+
+            # Delete the node
+            self.deleteNode(node)
+            # Insert this node to front as it was recently used
+            self.insertAfterHead(node)
+
+            return
+
+        # Check if the capacity limit has reached
+        if len(self.mpp) == self.cap:
+            # Get the least recently used node
+            node = self.tail.prev
+
+            # Delete node from map
+            del self.mpp[node.key]
+
+            # Delete node from doubly linked list
+            self.deleteNode(node)
+
+        # Create a new node
+        newNode = Node(key_, value)
+
+        # Insert it in map
+        self.mpp[key_] = newNode
+
+        # Insert in doubly linked list
+        self.insertAfterHead(newNode)
+
+
+# LRU Cache
+cache = LRUCache(2)
+
+# Queries
+cache.put(1, 1)
+cache.put(2, 2)
+print(cache.get(1), end=" ")
+cache.put(3, 3)
+print(cache.get(2), end=" ")
+cache.put(4, 4)
+print(cache.get(1), end=" ")
+print(cache.get(3), end=" ")
+print(cache.get(4), end=" ")

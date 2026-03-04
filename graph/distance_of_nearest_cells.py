@@ -40,6 +40,8 @@ class Solution:
         if grid[i][j] == 1:
           q.append((i,j,0))
           visited[i][j] = 1
+        else:
+          visited[i][j] = 0
 
     self.bfs(q,grid,visited,distance)
     
