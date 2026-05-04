@@ -19,6 +19,7 @@ class Solution:
 
     if dp[i][j1][j2] != -1:
       return dp[i][j1][j2]
+
     maxi = -sys.maxsize
 
     for dj1 in [-1,0,1]:
@@ -26,12 +27,12 @@ class Solution:
         temp = self.dfs(matrix,i+1,j1+dj1,j2+dj2,dp)
         if temp != '-1':
           if j1 == j2:
-              maxi = max(maxi,matrix[i][j1] + temp)
+            maxi = max(maxi,matrix[i][j1] + temp)
           else:
-            if temp != '-1':
-              maxi = max(maxi,matrix[i][j1] + matrix[i][j2] + temp)
+            maxi = max(maxi,matrix[i][j1] + matrix[i][j2] + temp)
 
     dp[i][j1][j2] = maxi
+
     return maxi
 
 

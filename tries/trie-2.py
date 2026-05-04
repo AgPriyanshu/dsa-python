@@ -1,8 +1,19 @@
-# Implement the Trie class:
-#     Trie(): Initializes the trie object.
-#     void insert (String word): Inserts the string word into the trie.
-#     boolean search (String word): Returns true if the string word is in the trie (i.e., was inserted before), and false otherwise.
-#     boolean startsWith (String prefix): Returns true if there is a previously inserted string word that has the prefix prefix, and false otherwise.
+# Implement "TRIE” data structure from scratch with the following functions.
+
+
+#     Trie(): Initialize the object of this “TRIE” data structure.
+
+
+#     insert(“WORD”): Insert the string “WORD” into this “TRIE” data structure.
+
+
+#     countWordsEqualTo(“WORD”): Return how many times this “WORD” is present in this “TRIE”.
+
+
+#     countWordsStartingWith(“PREFIX”): Return how many words are there in this “TRIE” that have the string “PREFIX” as a prefix.
+
+
+#     erase(“WORD”): Delete one occurrence of the string “WORD” from the “TRIE”.
 
 class Node:
   def __init__(self,wordCount=0,prefixCount=0):

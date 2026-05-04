@@ -84,7 +84,7 @@ class Solution:
           elif max_len == len(num) and max_val > num:
             max_val = num
 
-      return max_val
+      return max_val if max_val else "None"
 
 if __name__ == "__main__":
   nums = ["z","y","a"]
